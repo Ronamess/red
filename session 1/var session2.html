@@ -1,0 +1,17 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+</head>
+<body>
+    
+    <input type='text' id='username'>
+    <input type='button' id='login'  value='login' onclick="documentElementById('result') .innerHTML=documentElementById('username') .value;
+    documentElementById('result') .style.backgroundColor='red'">
+    <label id='result'></label>
+    <script>
+        var n=documentElementById('username') .value;
+        console.log(n);
+    </script>
+</body>
+</html>
