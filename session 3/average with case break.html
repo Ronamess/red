@@ -1,0 +1,45 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>average</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            margin: 5px;
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<input type="number" id="gradeInput">
+<br>
+<button onclick="calculateGrade()"> average </button>
+<p id="result"></p>
+<script>
+    function calculateGrade() {
+        var grade = document.getElementById('gradeInput').value;
+        var resultElement = document.getElementById('result');
+        switch (true) {
+            case grade < 10:
+                resultElement.innerHTML = 'need try more';
+                break;
+            case grade < 15:
+                resultElement.innerHTML = 'good';
+                break;
+            case grade < 21:
+                resultElement.innerHTML = 'very good';
+                break;
+            default:
+                resultElement.innerHTML = 'enter do not good number please good number';
+                break;
+        }
+    }
+</script>
+</body>
+</html>

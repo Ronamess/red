@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>Number guessing game with timer</title>
+</head>
+<body>
+    <h1>Number guessing game with timer</h1>
+    <p id="message"></p>
+    <input type="number" id="guess" placeholder="Enter your guess">
+    <button onclick="checkGuess()">check</button>
+
+<script>
+var targetNumber = Math.floor(Math.random() * 100) + 1; 
+var remainingGuesses = 5; 
+var timer;
+var isGameOver = false;
+
+function checkGuess() {
+    if (!isGameOver) {
+        var guess = parseInt(document.getElementById('guess').value);
+        if (guess === targetNumber) {
+            endGame(true);
+        } else {
+            remainingGuesses--;
+            document.getElementById('message').innerText = "the mistake! Number of guesses left:" + remainingGuesses;
+            if (remainingGuesses === 0) {
+                endGame(false);
+            }
+        }
+    }
+}
+
+function endGame(isCorrect) {
+    isGameOver = true;
+    clearInterval(timer);
+    if (isCorrect) {
+        document.getElementById('message').innerText = "congratulations! you number " + targetNumber + " you guessed it";
+    } else {
+        document.getElementById('message').innerText = "Unfortunately, you failed to guess the number " + targetNumber + " you did not Try again!";
+    }
+}
+
+
+function startTimer(duration) {
+    timer = duration;
+    setInterval(function () {
+        var minutes = parseInt(timer / 60, 10);
+        var seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        document.getElementById('message').innerText = "remaining time: " + minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            clearInterval(timer);
+            endGame(false);
+        }
+    }, 1000);
+}
+
+startTimer(60); 
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Styled Checkbox Form</title>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  <h2 class="mt-5 mb-3">Styled Checkbox Form</h2>
+
+  <form id="checkboxForm">
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="item1">
+        <label class="custom-control-label" for="item1">Item 1</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="item2">
+        <label class="custom-control-label" for="item2">Item 2</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="item3">
+        <label class="custom-control-label" for="item3">Item 3</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="item4">
+        <label class="custom-control-label" for="item4">Item 4</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="item5">
+        <label class="custom-control-label" for="item5">Item 5</label>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary mr-2" onclick="selectAll()">Select All</button>
+    <button type="button" class="btn btn-primary mr-2" onclick="unselectAll()">Unselect All</button>
+    <button type="button" class="btn btn-primary" onclick="selectToggle()">Toggle Select</button>
+  </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+
+var checkboxes = document.querySelectorAll('.custom-control-input');
+
+function selectAll() {
+  checkboxes.forEach(function(checkbox) {
+    checkbox.checked = true;
+  });
+}
+
+function unselectAll() {
+  checkboxes.forEach(function(checkbox) {
+    checkbox.checked = false;
+  });
+}
+
+function selectToggle() {
+  checkboxes.forEach(function(checkbox) {
+    checkbox.checked = !checkbox.checked;
+  });
+}
+</script>
+
+</body>
+</html>

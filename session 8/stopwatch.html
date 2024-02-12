@@ -1,0 +1,29 @@
+<html>
+<head>
+<script>
+var timer; 
+
+function startTimer() {
+    if (!timer) { 
+        var counter = 0;
+        timer = setInterval(function() {
+            counter++;
+            document.getElementById("counter").innerText = counter;
+        }, 1000); 
+    }
+}
+
+function stopTimer() {
+    clearInterval(timer);
+    timer = null; 
+}
+</script>
+</head>
+<body>
+    <h1>stopwatch</h1>
+    <div>Counter: <span id="counter">0</span></div>
+    <button onclick="startTimer()">start</button>
+    <button onclick="stopTimer()">stop</button>
+	<button onclick="stopTimer()">restart</button>
+</body>
+</html>
