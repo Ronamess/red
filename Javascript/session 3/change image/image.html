@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>changeImage</title>
+</head>
+<body>
+<img id="image1" src="img/1.png" alt="Image 1">
+<button onclick="changeImage()">changeImage</button>
+<img id="image2" src="img/2.jpg" alt="Image 2" style="display:none;">
+<script>
+    function changeImage() 
+    {
+        var image1 = document.getElementById('image1');
+        var image2 = document.getElementById('image2');
+        if (image1.style.display === 'none') {
+            image1.style.display = 'block';
+            image2.style.display = 'none';
+        } else {
+            image1.style.display = 'none';
+            image2.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
