@@ -1,0 +1,46 @@
+<html> 
+    <head>
+         <meta charset="UTF-8" /> 
+          <title>sign up and Login Form</title>
+        </head>
+         <body onload='alert("welcome")'> 
+            <p id="p1" 
+              onmousedown="document.getElementById('p1').innerHTML='hi Are you ok?'"
+              onmouseenter="change()"
+              onmouseleave="document.getElementById('p1').style.color='red';
+              document.getElementById('p1').style.fontSize='16px';
+              document.getElementById('p1').style.backgroundColor='red'">
+              welcome</p>
+              <input type='text' id='number' value=''>
+              <input type='button'  value='check'  onclick="check()">
+              <label id='result'></label>
+            <script>
+          document.write('welcome to class ');
+          console.log('text');
+          document.getElementById('p1').textContent='How are you?';
+          function change ()
+          {
+          var b=document.getElementById('p1');
+          b.style.color='red';
+          b.style.fontSize='20px';
+          b.style.backgroundColor='lightblue';
+          }
+            </script>
+            <button type="button" onclick="alert()" onmouseenter='alert ("mouseover")'> click</button>
+            <button type="button" onclick="print()"> printpage</button>
+            <div class="container">
+             <div class="login__form">
+                 <div class="login__form__img"> 
+                <div class="login__form__right"> 
+                         <form action=""> 
+                            <label for="input-email"> username</label> 
+                            <input type="email" id="input-email" /> <br>
+                            <label for="input-pass"> Password</label> 
+                            <input type="password" id="input-pass" /> <br>
+                            <button class="login-btn">Login</button> 
+                        </form>
+                     </div> 
+                    </div> 
+                </div>
+             </body>
+              </html>
