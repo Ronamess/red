@@ -1,0 +1,65 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>simple Form</title>
+    <style>
+        .form{width: 200px; margin-left: auto; margin-right:auto; justify-content: center;}
+    </style>
+</head>
+<body dir="rtl">
+    <div class="form">
+        <label >number1 </label> 
+        <input type="text" id="number1"> <br><br>
+        <label > number2 </label> 
+        <input type="text" id="number2" > <br><br> 
+        <label id='result'></label>
+    </div>  
+    <button class="operator" onclick="sum()">+</button><br>
+    <button class="operator" onclick="sub()">-</button><br>
+    <button class="operator" onclick="multi()">*</button><br>
+    <button class="operator" onclick="divied()">/</button><br>
+
+    <script>
+        var num1 = document.getElementById('number1');
+        var num2 = document.getElementById('number2');
+        
+        function sum() {
+            document.getElementById('result').innerHTML = 1;
+        }
+
+        function sub() {
+            document.getElementById('result').innerHTML = Number(num1.value) - Number(num2.value);
+        }
+
+        function multi() {
+            document.getElementById('result').innerHTML = Number(num1.value) * Number(num2.value);
+        }
+
+        function divied() {
+            document.getElementById('result').innerHTML = Number(num1.value) / Number(num2.value);
+        }
+        var n = Number(prompt("Enter Number"));
+        if (n > 0) {
+            console.log("positive");
+            document.getElementById('result').innerHTML = n;
+            document.getElementById('result').style.backgroundColor = 'blue';
+            document.getElementById('result').style.fontSize = '30px';
+            document.getElementById('result').style.color = 'white';
+        } else if (n < 0) {
+            console.log("negative");
+            document.getElementById('result').innerHTML = n;
+            document.getElementById('result').style.backgroundColor = 'orange';
+            document.getElementById('result').style.fontSize = '30px';
+            document.getElementById('result').style.color = 'white';
+        } else if (n === 0) {
+            console.log("zero");
+            document.getElementById('result').innerHTML = n;
+            document.getElementById('result').style.backgroundColor = "green";
+            document.getElementById('result').style.fontSize = '30px';
+            document.getElementById('result').style.color = 'white';
+        }else
+        {
+            console.log(Error); }
+    </script>
+</body>
+</html>
