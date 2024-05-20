@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>show time</title>
+<script>
+function updateTime() {
+    var currentDate = new Date();
+    var hours = currentDate.getHours();
+    var minutes = currentDate.getMinutes();
+    var seconds = currentDate.getSeconds();
+
+    hours = (hours < 10 ? "0" : "") + hours;
+    minutes = (minutes < 10 ? "0" : "") + minutes;
+    seconds = (seconds < 10 ? "0" : "") + seconds;
+
+    var currentTimeString = hours + ":" + minutes + ":" + seconds;
+    document.getElementById("time").innerText = currentTimeString;
+}
+
+
+setInterval(updateTime, 1000);
+</script>
+</head>
+<body>
+    <div id="time"></div>
+</body>
+</html>

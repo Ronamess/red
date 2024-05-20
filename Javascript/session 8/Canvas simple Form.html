@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Canvas simple Form</title>
+<style>
+    canvas {
+        border: 1px solid #000;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+<canvas id="myCanvas" width="400" height="200"></canvas>
+
+<script>
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    function drawForm() {
+	
+        ctx.fillStyle = '#f0f0f0';
+        ctx.fillRect(50, 50, 300, 100);
+
+       
+        ctx.font = '20px Arial';
+        ctx.fillStyle = '#000';
+        ctx.fillText('name:', 70, 90);
+        ctx.fillText('email:', 70, 120);
+
+       
+        ctx.strokeStyle = '#000';
+        ctx.strokeRect(150, 75, 180, 25);
+        ctx.strokeRect(150, 105, 180, 25);
+    }
+
+    drawForm();
+</script>
+</body>
+</html>
