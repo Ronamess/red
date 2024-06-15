@@ -17,11 +17,12 @@
           <li><a href="#chefs">Chefs</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li class="dropdown"><a href="#"><span>Form</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="func1form.php">1</a></li>
-              <li><a href="func2form.php">2</a></li>
-            </ul>
-          </li>
+          <ul>
+              <li><a href="Form Sign in.php">Form Sign in</a></li>
+              <li><a href="Form Log in.php">Form Log in</a></li>
+              <li><a href="userinfo.php">userinfo</a></li>
+              <li><a href="user list.php">userlist</a></li>
+              </ul>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav><!-- .navbar -->

@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <?php include "bootstrap_head.php" ?>
-</head>
-
 <?php
 session_start();
 
@@ -16,27 +6,87 @@ if (!isset($_SESSION['userid'])) {
     exit();
 }
 
+include "bootstrap_head.php";
 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Users";
 
-$servername = "localhost"; // نام سرور
-$username = "root"; // نام کاربری پایگاه داده
-$password = ""; // رمز عبور پایگاه داده
-$dbname = "Users"; // نام پایگاه داده که ایجاد کرده‌اید
-
-// اتصال به پایگاه داده
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// بررسی اتصال
 if (!$conn) {
     die("failed to connect:" . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM `userinfo`"; // دستور SQL برای دریافت نام و ایمیل از جدول Userinfo
+$sql = "SELECT * FROM `userinfo`";
 $result = $conn->query($sql);
-
-// بستن اتصال
-//$conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <?php include "bootstrap_head.php" ?>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .content {
+            margin: 20px;
+        }
+
+        .content h2 {
+            margin-bottom: 10px;
+        }
+
+        .content a {
+            margin-left: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .fas {
+            margin-right: 5px;
+        }
+
+        .profile-menu a {
+            :active {
+                color: blue;
+            }
+        }
+    </style>
+</head>
 
 <body>
     <nav class="navbar">
@@ -48,8 +98,8 @@ $result = $conn->query($sql);
             </ul>
         </div>
         <div class="center" style="font-size: 1.2rem; font-weight: bold; color: #fff; margin-top: 1rem;">
-            <?php echo "Welcome to the admin panel, " . $_SESSION['username'] . "!";?>
-            </div>
+            <?php echo "Welcome to the admin panel, " . $_SESSION['username'] . "!"; ?>
+        </div>
         <div class="right">
             <div class="profile">
                 <div class="profile-menu">
@@ -83,17 +133,14 @@ $result = $conn->query($sql);
                 <tbody>
                     <?php
                     if ($result->num_rows > 0) {
-                        // خروجی هر سطر از نتایج
-                        while($row = $result->fetch_assoc()) {
-                            echo " <tr>
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>
                             <td>" . $row["name"] . "</td>
                             <td>" . $row["email"] . "</td>
-                            </tr>
-                                ";
+                            </tr>";
                         }
                     }
                     ?>
-
                 </tbody>
             </table>
         </div>
@@ -145,56 +192,3 @@ $result = $conn->query($sql);
 </body>
 
 </html>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-    }
-
-    .navbar {
-        background-color: #333;
-        color: #fff;
-        padding: 10px;
-    }
-
-    .navbar a {
-        color: #fff;
-        text-decoration: none;
-        margin-right: 10px;
-    }
-
-    .content {
-        margin: 20px;
-    }
-
-    .content h2 {
-        margin-bottom: 10px;
-    }
-
-    .content a {
-        margin-left: 10px;
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    .fas {
-        margin-right: 5px;
-    }
-    .profile-menu a{
-        :active {
-            color :blue;
-        }
-    }
-</style>
