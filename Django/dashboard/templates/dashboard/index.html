@@ -1,0 +1,738 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>  Atrio </title>
+    <!-- Favicon-->
+    <link rel="icon" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon">
+    <!-- Plugins Core Css -->
+    <link href="{% static 'assets/css/app.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/js/bundles/materialize-rtl/materialize-rtl.min.css' %}" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <!-- Theme style. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{% static 'assets/css/styles/all-themes.css' %}" rel="stylesheet" />
+</head>
+
+<body class="light rtl">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="m-t-30">
+                <img class="loading-img-spin" src="{% static 'assets/images/loading.png' %}" alt="admin">
+            </div>
+            <p>لطفا صبر کنید...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" onClick="return false;" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
+                    aria-expanded="false"></a>
+                <a href="#" onClick="return false;" class="bars"></a>
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'assets/images/logo.png' %}" alt="" />
+                    <span class="logo-name"> welcome to my site </span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="#" onClick="return false;" class="sidemenu-collapse">
+                            <i class="nav-hdr-btn ti-align-left"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown user_profile">
+                        <div class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{% static 'assets/images/user.jpg' %}" alt="user">
+                        </div>
+                        <ul class="dropdown-menu pullDown">
+                            <li class="body">
+                                <ul class="user_dw_menu">
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Tasks -->
+                    <li class="pull-right">
+                        <a href="#" onClick="return false;" class="js-right-sidebar" data-close="true">
+                            <i class="nav-hdr-btn ti-layout-grid2"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <div>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li>
+                        <div class="sidebar-profile clearfix">
+                            <div class="profile-img">
+                                <img src="{% static 'assets/images/usrbig.jpg' %}" alt="profile">
+                            </div>
+                            <div class="profile-info">
+                                <h3>حسین حیاتی</h3>
+                                <p> welcome </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="active">
+                        <a href="#" onClick="return false;" class="menu-toggle">
+                            <i class="menu-icon ti-home"></i>
+                            <span>خانه</span>
+                        </a>
+                    </li>
+                    <li>
+                                <a href="pages/ecommerce/products.html">محصولات</a>
+                            </li>
+                            <li>
+                                <a href="pages/ecommerce/product-detail.html">جزئیات محصول</a>
+                            </li>
+                            <li>
+                                <a href="pages/ecommerce/cart.html">سبد خرید</a>
+                            </li>
+                            <li>
+                                <a href="pages/ecommerce/product-list.html">فهرست محصول</a>
+                            </li>
+                            <li>
+                                <a href="pages/ecommerce/invoice.html">صورت حساب</a>
+                            </li>
+                    <li>
+                        <a href="#" onClick="return false;" class="menu-toggle">
+                            <i class="menu-icon ti-layout"></i>
+                            <span>فرم ها</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="pages/forms/basic-form-elements.html">فرم پایه</a>
+                            </li>
+                            <li>
+                                <a href="pages/forms/advanced-form-elements.html">فرم پیشرفته</a>
+                            </li>
+                            <li>
+                                <a href="pages/forms/form-examples.html">مثال های فرم</a>
+                            </li>
+                            <li>
+                                <a href="pages/forms/form-validation.html">اعتبار سنجی فرم</a>
+                            </li>
+                            <li>
+                                <a href="pages/forms/form-wizard.html">فرم جادویی</a>
+                            </li>
+                            <li>
+                                <a href="pages/forms/editors.html">ویرایشگرها</a>
+                            </li>
+                        </ul>
+                    </li>
+
+            <!-- #Menu -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                <li role="presentation">
+
+
+
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- #END# Right Sidebar -->
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <ul class="breadcrumb breadcrumb-style">
+                            <li class="breadcrumb-item 	bcrumb-1">
+                                <a href="{% url 'index' %}">
+                                    <i class="material-icons">home</i>
+                                    خانه</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Widgets -->
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="info-box7 l-bg-green order-info-box7">
+                        <div class="info-box7-block">
+                            <h4 class="m-b-20"> تعداد محصولات فروشگاه  </h4>
+                            <h2 class="text-right"><i class="fas fa-cart-plus pull-left"></i><span>{{ count_product }}</span></h2>
+                            <p class="m-b-0">18٪ بالاتر از ماه گذشته</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="info-box7 l-bg-purple order-info-box7">
+                        <div class="info-box7-block">
+                            <h4 class="m-b-20">سفارشات تکمیل شده</h4>
+                            <h2 class="text-right"><i class="fas fa-business-time pull-left"></i><span>{{ count_product }}</span></h2>
+                            <p class="m-b-0">21٪ بالاتر از ماه گذشته</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="info-box7 l-bg-orange order-info-box7">
+                        <div class="info-box7-block">
+                            <h4 class="m-b-20">سفارشات جدید</h4>
+                            <h2 class="text-right"><i class="fas fa-chart-line pull-left"></i><span>{{ count_product }}</span></h2>
+                            <p class="m-b-0">37٪ بالاتر از ماه گذشته</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="info-box7 l-bg-cyan order-info-box7">
+                        <div class="info-box7-block">
+                            <h4 class="m-b-20"> قیمت آنلاین بیت کوین </h4>
+                            <h2 class="text-right"><i class="fas fa-dollar-sign pull-left"></i><span>{{ price_btc }}  دلار </span></h2>
+                            <p class="m-b-0">20٪ بالاتر از ماه گذشته</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Widgets -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong>نمونه</strong> نمودار</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدام</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدامی دیگر</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">چیز دیگری اینجا</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div id="chart1"></div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="text-muted font-15 text-truncate">هدف</p>
+                                    <h5>
+                                        <i class="fas fa-arrow-circle-up col-green m-r-5"></i>15هزار
+                                    </h5>
+                                </div>
+                                <div class="col-4">
+                                    <p class="text-muted font-15 text-truncate">هفته گذشته</p>
+                                    <h5>
+                                        <i class="fas fa-arrow-circle-down col-red m-r-5"></i>2.8هزار
+                                    </h5>
+                                </div>
+                                <div class="col-4">
+                                    <p class="text-muted text-truncate">ماه گذشته</p>
+                                    <h5>
+                                        <i class="fas fa-arrow-circle-up col-green m-r-5"></i>12.5هزار
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong>نمونه</strong> نمودار</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدام</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدامی دیگر</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">چیز دیگری اینجا</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <canvas id="line-chart"></canvas>
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="text-muted font-15 text-truncate">هدف</p>
+                                    <h5>
+                                        <i class="fas fa-arrow-circle-down col-red m-r-5"></i>15هزار
+                                    </h5>
+                                </div>
+                                <div class="col-4">
+                                    <p class="text-muted font-15 text-truncate">هفته گذشته</p>
+                                    <h5>
+                                        <i class="fas fa-arrow-circle-up col-green m-r-5"></i>2.8هزار
+                                    </h5>
+                                </div>
+                                <div class="col-4">
+                                    <p class="text-muted text-truncate">ماه گذشته</p>
+                                    <h5>
+                                        <i class="fas fa-arrow-circle-down col-red m-r-5"></i>12.5هزار
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong>نمودار</strong> داده</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدام</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدامی دیگر</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">چیز دیگری اینجا</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                        	<canvas id="radar-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong>نمودار</strong> داده</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدام</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدامی دیگر</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">چیز دیگری اینجا</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                        	<canvas id="doughut-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong>نمودار</strong> داده</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدام</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدامی دیگر</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">چیز دیگری اینجا</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                        	<canvas id="pie-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong>پروژه های </strong>جدید</h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدام</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدامی دیگر</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">چیز دیگری اینجا</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div id="new-orders" class="media-list position-relative">
+                                <div class="table-responsive">
+                                    <table id="new-orders-table" class="table table-hover table-xl mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-top-0">محصول</th>
+                                                <th class="border-top-0">کارمندان</th>
+                                                <th class="border-top-0">هزینه</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-truncate">آیفون ایکس</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user1.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user3.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+2</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">8999 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">پیکسل 2</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user4.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user5.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user6.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+4</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">5550 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">وان پلاس</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user7.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user8.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user9.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+3</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">9000 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">گلکسی</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user1.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user2.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+1</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">7500 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">موتو زد2</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user3.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user4.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user5.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+4</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">8500 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">آیفون ایکس</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user6.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user7.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+2</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">8999 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">آیفون ایکس</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user3.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user7.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user1.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+4</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">8999 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">پیکسل 2</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user4.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user6.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+3</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">5550 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">وان پلاس</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user7.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user8.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user9.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+3</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">9000 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">سامسونگ</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user3.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user6.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user1.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+2</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">4563 تومان</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-truncate">نوکیا</td>
+                                                <td class="text-truncate">
+                                                    <ul class="list-unstyled order-list">
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user9.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user2.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <img class="rounded-circle" src="assets/images/user/user5.jpg"
+                                                                alt="user">
+                                                        </li>
+                                                        <li class="avatar avatar-sm">
+                                                            <span class="badge">+1</span>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-truncate">8763 تومان</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong>تقویم</strong></h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدام</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">اقدامی دیگر</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" onClick="return false;">چیز دیگری اینجا</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="deskCal">
+                                <div id='desktopCal'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- Plugins Js -->
+    <script src="{% static 'assets/js/app.min.js' %}"></script>
+    <script src="{% static 'assets/js/chart.min.js' %}"></script>
+    <!-- Custom Js -->
+    <script src="{% static 'assets/js/admin.js' %}"></script>
+    <script src="{% static 'assets/js/bundles/apexcharts/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/js/pages/index.js' %}"></script>
+</body>
