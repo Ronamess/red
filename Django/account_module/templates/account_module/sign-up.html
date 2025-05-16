@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثبت نام</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap-rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customcss/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: 'Vazir', sans-serif;
+        }
+        .register-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .register-header {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+        .register-header h5 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .form-control:focus {
+            border-color: #2575fc;
+            box-shadow: 0 0 0 0.2rem rgba(37, 117, 252, 0.25);
+        }
+        .custom-btn {
+            background: #2575fc;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            transition: background 0.3s;
+        }
+        .custom-btn:hover {
+            background: #1a63c0;
+        }
+        .login-link {
+            color: #2575fc;
+            text-decoration: none;
+        }
+        .login-link:hover {
+            text-decoration: underline;
+        }
+        .input-group-text i {
+            color: #2575fc;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+        .alert-danger {
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Start Registration Form -->
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card register-card">
+                <div class="register-header">
+                    <h5>عضویت در سایت</h5>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <!-- Name Field -->
+                        <div class="form-group">
+                            <label for="name">نام:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                {{ form.name }}
+                            </div>
+                        </div>
+
+                        <!-- Last Name Field -->
+                        <div class="form-group">
+                            <label for="lname">نام خانوادگی:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                {{ form.lname }}
+                            </div>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="form-group">
+                            <label for="email">ایمیل:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                </div>
+                                {{ form.email }}
+                            </div>
+                        </div>
+
+                        <!-- Username Field -->
+                        <div class="form-group">
+                            <label for="username">نام کاربری:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user-plus"></i></span>
+                                </div>
+                                {{ form.username }}
+                            </div>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="form-group">
+                            <label for="password">رمز عبور:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                </div>
+                                {{ form.password }}
+                                <h6 class="alert alert-danger">{{ form.password.errors }}</h6>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button onclick="myFunction()" class="btn btn-primary btn-block custom-btn">ثبت نام</button>
+                        <h1 class="warning alert-danger">{{ form.username.errors }}</h1>
+                        <!-- Login Link -->
+                        <p class="text-center mt-3">قبلاً ثبت‌نام کرده‌اید؟ <a href="{% url 'login' %}" class="login-link">وارد شوید</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Registration Form -->
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/myscript.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script>
+        function myFunction() {
+            Swal.fire({
+                title: "تبریک!",
+                text: "با موفقیت ثبت نام شد",
+                icon: "success",
+                confirmButtonColor: '#2575fc'
+            });
+        }
+    </script>
+</body>
+</html>
