@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سبد خرید</title>
+    <!-- لینک به فایل CSS بوت‌استرپ -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <h1>سبد خرید شما</h1>
+
+    <!-- نمایش پیام‌ها -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>محصول</th>
+                <th>تعداد</th>
+                <th>قیمت واحد</th>
+                <th>قیمت کل</th>
+                <th>حذف</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.product.title }}</td>
+                <td>
+                    <form action="{% url 'update_cart' item.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1" style="width: 50px;">
+                        <button type="submit" class="btn btn-primary">به‌روزرسانی</button>
+                    </form>
+                </td>
+                <td>{{ item.product.final_price }}</td>
+                <td>{{ item.product.final_price|mul:item.quantity }}</td>
+                <td>
+                    <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>مجموع کل: {{ total_price }}</p>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبد خرید شیک</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        #cart {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        .cart-item input {
+            width: 50px;
+            padding: 5px;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .cart-item button {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .cart-item button:hover {
+            background: #ff1a1a;
+        }
+        .summary {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: right;
+        }
+        .summary p {
+            margin: 10px 0;
+        }
+        #checkout {
+            display: block;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #checkout:hover {
+            background: #218838;
+        }
+        .discount {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: right;
+        }
+        .discount input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>سبد خرید شما</h1>
+    <div id="cart">
+        <!-- محصولات به‌طور دینامیک اضافه می‌شوند -->
+    </div>
+    <div class="discount">
+        <label for="discount">تخفیف (تومان): </label>
+        <input type="number" id="discount" min="0" onchange="updateDiscount(this.value)">
+    </div>
+    <div class="summary">
+        <p>مجموع قیمت: <span id="totalPrice">0</span> تومان</p>
+        <p>مالیات (۱۰٪): <span id="tax">0</span> تومان</p>
+        <p>تخفیف: <span id="discountAmount">0</span> تومان</p>
+        <p>قیمت نهایی: <span id="finalPrice">0</span> تومان</p>
+    </div>
+    <button id="checkout" onclick="checkout()">پرداخت و تکمیل سفارش</button>
+
+    <script>
+        let cart = [];
+        let taxRate = 0.1; // نرخ مالیات 10%
+        let discount = 0;
+
+        function addToCart(name, image, price, quantity) {
+            cart.push({ name, image, price, quantity });
+            updateCart();
+        }
+
+        function updateCart() {
+            let cartDiv = document.getElementById('cart');
+            let totalPrice = 0;
+            cartDiv.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                let itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+
+                cartDiv.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <span>${item.name}</span>
+                        <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">
+                        <span>${itemTotal.toLocaleString()} تومان</span>
+                        <button onclick="removeItem(${index})">حذف</button>
+                    </div>
+                `;
+            });
+
+            let tax = totalPrice * taxRate;
+            let finalPrice = totalPrice + tax - discount;
+
+            document.getElementById('totalPrice').innerText = totalPrice.toLocaleString();
+            document.getElementById('tax').innerText = tax.toLocaleString();
+            document.getElementById('discountAmount').innerText = discount.toLocaleString();
+            document.getElementById('finalPrice').innerText = finalPrice.toLocaleString();
+        }
+
+        function updateQuantity(index, quantity) {
+            cart[index].quantity = parseInt(quantity);
+            updateCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateDiscount(value) {
+            discount = parseInt(value) || 0;
+            updateCart();
+        }
+
+        function checkout() {
+            alert('به صفحه پرداخت هدایت می‌شوید.');
+            // هدایت به صفحه پرداخت
+        }
+
+        // مثال افزودن محصولات با استفاده از داده‌های دینامیک
+        let products = [
+            { image: '{{foo.image.url}}', title: '{{foo.title}}', price: {{foo.price}} },
+            { image: '{{foo.image.url}}', title: '{{foo.title}}', price: {{foo.price}}},
+            { image: '{{foo.image.url}}', title: '{{foo.title}}', price: {{foo.price}} }
+        ];
+
+        products.forEach(product => {
+            addToCart(product.title, product.image, product.price, 1);
+        });
+    </script>
+</body>
+</html>
