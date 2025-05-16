@@ -1,0 +1,87 @@
+{% extends "products/index.html" %}
+{% block body %}
+    <div class="container">
+        <ul class="breadcrumb bg-white mt-4">
+            <li class="breadcrumb-item"><a href="#" class="font-12 vazir">صفحه اصلی</a></li>
+            <li class="breadcrumb-item"><a href="#" class="pr-2 font-12 vazir">تماس با ما</a></li>
+        </ul>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 mb-3 d-flex justify-content-center align-items-center">
+                <h5 class="title pb-2 border-bottom border-info">اطلاعات تماس</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-sm-4 text-center info">
+                <div class="icon-box bg-light p-4 rounded-circle shadow-sm">
+                    <i class="fa fa-phone fa-2x text-info"></i>
+                </div>
+                <p class="mt-3 font-14 text-secondary">{{ data_info.telephone }}</p>
+            </div>
+
+            <div class="col-sm-4 text-center info">
+                <div class="icon-box bg-light p-4 rounded-circle shadow-sm">
+                    <i class="fas fa-envelope fa-2x text-info"></i>
+                </div>
+                <p class="mt-3 font-14 text-secondary">{{ data_info.email }}</p>
+            </div>
+
+            <div class="col-sm-4 text-center info">
+                <div class="icon-box bg-light p-4 rounded-circle shadow-sm">
+                    <i class="fas fa-map-marker-alt fa-2x text-info"></i>
+                </div>
+                <p class="mt-3 font-14 text-secondary">{{ data_info.address }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-6 contact bg-white py-4 px-4 shadow-sm mb-3 rounded-lg">
+                <h6 class="text-info mr-2 mb-4">ارتباط با ما</h6>
+                <p class="text-justify vazir font-14 text-secondary">در صورت تمایل می‌توانید ایمیل خود را وارد کنید. با تشکر!</p>
+
+            <!-- نمایش پیام‌ها -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form action="{% url 'contact_us' %}" method="POST">
+                {% csrf_token %}  <!-- اضافه کردن توکن امنیتی -->
+                <div class="row">
+                        <div class="col form-group">
+                            <input type="text" name="name" id="name" class="form-control rounded-pill shadow-sm" placeholder="نام خود را وارد کنید ...">
+                        </div>
+                        <div class="col form-group">
+                            <input type="email" name="email" id="email" class="form-control rounded-pill shadow-sm" placeholder="ایمیل خود را وارد کنید ...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea  name="message" cols="30" rows="6" class="form-control w-100 rounded-lg p-3 shadow-sm" placeholder="پیام خود را وارد کنید ..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-info rounded-pill mr-auto d-block font-13 px-4 shadow-sm">ارسال</button>
+                </form>
+            </div>
+
+           <div class="col-md-6 mb-3">
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317715.7119263355!2d-0.10159865000000001!3d51.52864165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2s!4v1698765432100!5m2!1sen!2s"
+        frameborder="0"
+        width="100%"
+        height="550px"
+        style="border-radius: 10px;"
+        allowfullscreen=""
+        loading="lazy">
+    </iframe>
+</div>
+        </div>
+    </div>
+{% endblock %}

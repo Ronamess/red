@@ -1,0 +1,242 @@
+{% extends "products/index.html" %}
+{% block body %}
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-12 col-lg-3">
+            <div class="card bg-primary my-5 p-4 text-center shadow-sm">
+                <img src="{% static 'images/user.png' %}" class="img-fluid rounded-circle d-block mx-auto" width="120px" height="120px" alt="user-image">
+                <h5 class="text-white mt-3 mb-0">کاربر: {{ user.first_name }} {{ user.last_name }}</h5>
+                <p class="text-light font-12 mt-1">خوش آمدید!</p>
+            </div>
+            <div class="list-group mb-5 shadow-sm">
+                <a href="#vaziyat" class="list-group-item list-group-item-action d-flex align-items-center active">
+                    <i class="fa fa-cog ml-2"></i>مرور وضعیت
+                </a>
+                <a href="{% url 'signup_account_module' %}" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="fa fa-server ml-2"></i>دوره‌های ثبت‌نام‌شده
+                </a>
+                <a href="{% url 'sabadkharid' %}" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="fa fa-shopping-cart ml-2"></i>سبد خرید
+                </a>
+                <a href="#ticket" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="fa fa-tags ml-2"></i>تیکت‌ها
+                </a>
+                <a href="#user-change" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="fa fa-address-card ml-2"></i>تغییر مشخصات
+                </a>
+                <a href="{% url 'index' %}" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="fa fa-sign-out ml-2"></i>خروج
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-12 col-lg-9">
+            <div class="tab-content">
+                <!-- وضعیت -->
+                <div class="tab-pane fade show active" id="vaziyat">
+                    <div class="card my-5 shadow-sm">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h6 class="mb-0">مرور وضعیت</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="card h-100 shadow-sm">
+                                        <div class="card-body d-flex align-items-center">
+                                            <img src="{% static 'images/university-campus.png' %}" class="img-fluid p-2 rounded bg-warning" alt="courses" width="50">
+                                            <div class="ml-3">
+                                                <p class="mb-0 font-14">{{ foo.count }} دوره</p>
+                                                <small class="text-muted">در سایت وجود دارد</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="card h-100 shadow-sm">
+                                        <div class="card-body d-flex align-items-center">
+                                            <img src="{% static 'images/a.png' %}" class="img-fluid p-2 rounded bg-warning" alt="courses" width="50">
+                                            <div class="ml-3">
+                                                <p class="mb-0 font-14">{{ foo.count }} دوره</p>
+                                                <small class="text-muted">ثبت‌نام کرده‌اید</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="card h-100 shadow-sm">
+                                        <div class="card-body d-flex align-items-center">
+                                            <img src="{% static 'images/shopping-cart.png' %}" class="img-fluid p-2 rounded bg-warning" alt="courses" width="50">
+                                            <div class="ml-3">
+                                                <p class="mb-0 font-14">{{ foo.count }} دوره</p>
+                                                <small class="text-muted">در انتظار پرداخت</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="card h-100 shadow-sm">
+                                        <div class="card-body d-flex align-items-center">
+                                            <img src="{% static 'images/wallet-filled-money-tool.png' %}" class="img-fluid p-2 rounded bg-warning" alt="courses" width="50">
+                                            <div class="ml-3">
+                                                <p class="mb-0 font-14">{{ foo.price }} تومان</p>
+                                                <small class="text-muted">موجودی قابل تسویه</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="card mt-3 shadow-sm">
+                                        <div class="card-body bg-light">
+                                            <p class="mb-2 font-14"><i class="fa fa-bell ml-2"></i>جدیدترین اعلان‌ها</p>
+                                            <small class="text-muted">در تاریخ {{ foo.date }}</small>
+                                            <div class="alert alert-info mt-3">
+                                                <p class="font-13 text-center mb-0">کد تخفیف {{ foo.price }}%: {{ foo.name }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- دوره‌های ثبت‌نام‌شده -->
+                <div class="tab-pane fade" id="dore-signup">
+                    <div class="card my-5 shadow-sm">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h6 class="mb-0">دوره‌های ثبت‌نام‌شده</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12 col-md-4">
+                                            <img src="images/html-2.png" class="img-fluid rounded" alt="html">
+                                        </div>
+                                        <div class="col-12 col-md-8 text-right">
+                                            <a href="Category.html" class="font-14 text-dark">آموزش HTML</a>
+                                            <p class="text-muted font-12 mt-2">بخش اول متخصص طراحی سایت: زبان نشانه‌گذاری HTML به عنوان اولین پایه برای هر دوره آموزش طراحی سایت در نظر گرفته می‌شود.</p>
+                                            <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#download1">مشاهده لینک دانلود</button>
+                                        </div>
+                                    </div>
+                                    <div class="collapse mt-3" id="download1">
+                                        <table class="table table-borderless font-12">
+                                            <tr>
+                                                <td>آموزش HTML جلسه 1 - 3</td>
+                                                <td><button class="btn btn-success btn-sm"><i class="fa fa-download ml-2"></i>دانلود</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>آموزش HTML جلسه 3 - 6</td>
+                                                <td><button class="btn btn-success btn-sm"><i class="fa fa-download ml-2"></i>دانلود</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- سبد خرید -->
+                <div class="tab-pane fade" id="shopping-cart">
+                    <div class="card my-5 shadow-sm">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h6 class="mb-0">سبد خرید</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>عکس</th>
+                                            <th>نام دوره</th>
+                                            <th>تعداد</th>
+                                            <th>قیمت</th>
+                                            <th>قیمت کل</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><img src="{{ foo.image.url }}" class="img-fluid" width="50"></td>
+                                            <td>{{ foo.name }}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <button class="btn btn-sm btn-outline-secondary">-</button>
+                                                    <input type="text" class="form-control form-control-sm mx-2 text-center" value="1" style="width: 50px;">
+                                                    <button class="btn btn-sm btn-outline-secondary">+</button>
+                                                </div>
+                                            </td>
+                                            <td>{{ foo.price }} تومان</td>
+                                            <td>{{ foo.price }} تومان</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class="btn btn-success btn-block mt-3">پرداخت</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تیکت‌ها -->
+                <div class="tab-pane fade" id="ticket">
+                    <div class="card my-5 shadow-sm">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h6 class="mb-0">تیکت‌ها</h6>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="title">عنوان</label>
+                                    <input type="text" class="form-control" id="title" placeholder="عنوان تیکت">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">متن پیام</label>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="متن پیام"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">ارسال تیکت</button>
+                            </form>
+                            <div class="alert alert-warning mt-4">
+                                <p class="mb-0">تاکنون تیکتی برای شما ثبت نشده است!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تغییر مشخصات -->
+                <div class="tab-pane fade" id="user-change">
+                    <div class="card my-5 shadow-sm">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h6 class="mb-0">تغییر مشخصات</h6>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="firstName">نام</label>
+                                    <input type="text" class="form-control" id="firstName" value="علی">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">نام خانوادگی</label>
+                                    <input type="text" class="form-control" id="lastName" value="نوروزی">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">رمز عبور</label>
+                                    <input type="password" class="form-control" id="password" value="123456789">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileImage">عکس پروفایل</label>
+                                    <input type="file" class="form-control-file" id="profileImage">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">ثبت تغییرات</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

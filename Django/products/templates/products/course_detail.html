@@ -1,0 +1,79 @@
+{% extends "products/index.html" %}
+{% block body %}
+    <div class="container">
+        <ul class="breadcrumb bg-white mt-4 ">
+            <li class="breadcrumb-item"><a href="#" class="font-12 vazir">صفحه اصلی</a></li>
+            <li class="breadcrumb-item"><a href="#" class="pr-2 font-12 vazir">دوره های آموزشی</a></li>
+            <li class="breadcrumb-item"><a href="#" class="pr-2 font-12 vazir">آموزش HTML</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <img src="{{ data.image.url }}" class="img-fluid">
+                <ul class="list-group text-center list-group-flush custom-list-group">
+                    <li class="list-group-item font-13">عنوان دوره : {{ data.title }}</li>
+                    <li class="list-group-item font-13">مدرس : {{ data.teacher }}</li>
+                    <li class="list-group-item font-13">سطح دوره : {{ data.level }}</li>
+                    <li class="list-group-item font-13">وضعیت دوره : {{ data.status }}</li>
+                    <li class="list-group-item font-13">قسمت های ارسالی : {{ data.episodes }}</li>
+                    <li class="list-group-item font-13">قیمت دوره : {{ data.price }} تومان</li>
+                </ul>
+                <button class="btn btn-info btn-block mt-3 py-2 font-12"><i class="fa fa-cart-plus align-middle"></i> افزودن به سبد خرید</button>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-header bg-white px-0 course-table">
+                        <ul class="nav nav-justified pr-0">
+                            <li class="nav-item"><a href="#course-info" class="nav-link active font-14" data-toggle="list">معرفی دوره</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="course-info">
+                                <h1 class="mb-3 text-info">{{ data.name }} </h1>
+                                <img src="{{ data.image.url }}" alt="{{ data.title }}" class="img-fluid card-img-top">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 d-flex justify-content-between">
+                <h6 class="title pb-2">دوره های پیشنهادی</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row my-3">
+            {% if data_product %}
+                {% for foo in data_product %}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="card custom-card mb-3">
+                            <div class="sub-layer">
+                                <img src="{{ foo.image.url }}" alt="bootstrap" class="img-fluid card-img-top">
+                            </div>
+                            <div class="card-body">
+                                <a href="{% url 'course_detail' foo.id %}" class="card-link">{{ foo.title }}</a>
+                                <p class="text-justify card-text vazir font-14 mt-3">{{ foo.desc }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <span class="badge badge-primary badge-pill pt-1">{{ foo.off }}%</span>
+                                <div class="float-left">
+                                    <del class="text-muted font-13">{{ foo.price }} تومان</del>
+                                    <small class="text-success mr-2">{{ foo.price }} تومان</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>هیچ دوره پیشنهادی موجود نیست.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

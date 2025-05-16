@@ -1,0 +1,19 @@
+{% extends "products/index.html" %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <p><small>نویسنده: {{ post.author }}</small></p>
+        <a href="{% url 'blog' %}" class="btn btn-outline-primary">بازگشت به لیست مطالب</a>
+    </div>
+{% endblock %}
+<!-- فرضاً در صفحه اصلی نمایش لیست مطالب -->
+{% for post in posts %}
+    <div class="post-preview">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.excerpt }}</p>
+        <a href="{% url 'blog_post' post.id %}" class="btn btn-outline-primary btn-sm">بیشتر بخوانید</a>
+    </div>
+{% endfor %}
+

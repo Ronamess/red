@@ -1,0 +1,22 @@
+{% extends "products/index.html" %}
+{% block body %}
+  {% load static %}
+  <h2 class="text-center text-dark mb-4">تاریخچه جستجو</h2>
+  <div class="search-history container py-4">
+    {% if queries %}
+      <ul class="list-group list-group-flush">
+        {% for query in queries %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="?query={{ query.query }}" class="text-decoration-none text-dark font-weight-bold">{{ query.query }}</a>
+            <span class="text-muted small">{{ query.created_at|date:"Y/m/d H:i" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-center text-muted">هیچ تاریخچه جستجویی موجود نیست.</p>
+    {% endif %}
+  </div>
+  <div class="col-12 d-flex justify-content-center">
+    <a href="{% url 'index' %}" class="btn btn-info btn-lg rounded-pill mt-4 px-4 py-2">بازگشت به صفحه اصلی</a>
+  </div>
+{% endblock %}

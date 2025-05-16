@@ -1,0 +1,45 @@
+{% extends "products/index.html" %}
+{% block body %}
+{% load static %}
+<h2 class="text-center mb-4">جستجو</h2>
+<div class="container my-3">
+    <div class="row">
+        {% for foo in data_product %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card custom-card shadow-sm border-light">
+                <div class="sub-layer position-relative">
+                    <img src="{% if foo.image %}{{ foo.image.url }}{% else %}{% static 'images/default-image.jpg' %}{% endif %}"
+                         alt="{{ foo.title }}" class="img-fluid card-img-top rounded">
+                    <div class="over-layer d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                        <a href="{% url 'course' foo.id %}" class="btn btn-primary shadow-sm">مشاهده و خرید</a>
+                        <span class="badge badge-secondary badge-pill position-absolute top-0 start-0 m-3">
+                            100 <i class="fa fa-shopping-basket pr-1"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'course' foo.id %}" class="card-link text-dark font-weight-bold">{{ foo.title }}</a>
+                    <p class="text-justify card-text vazir font-14 mt-3 text-muted">
+                        {{ foo.desc }}
+                    </p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <span class="badge badge-primary badge-pill pt-1">{{ foo.off }}%</span>
+                    <div class="d-flex flex-column align-items-end">
+                        <del class="text-muted font-13">{{ foo.price }} تومان</del>
+                        <small class="text-success font-weight-bold">{{ foo.price }} تومان</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center text-muted">محصولی برای نمایش وجود ندارد.</p>
+        </div>
+        {% endfor %}
+        <div class="col-12 d-flex justify-content-center">
+            <a href="{% url 'index' %}" class="btn btn-info btn-lg rounded-pill mt-4 px-4 py-2">بازگشت به صفحه اصلی</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

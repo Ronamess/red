@@ -1,0 +1,47 @@
+{% extends "products/index.html" %}
+{% block body %}
+{% load static %}
+<title>نتایج جستجو: {{ query }}</title>
+<div class="container">
+    <div class="row my-5">
+        <div class="col-md-8 mx-auto">
+            <h3 class="text-center text-info mb-4 font-weight-bold">{{ query }} - نتایج جستجو</h3>
+            {% if results %}
+                <div class="list-group">
+                    {% for product in results %}
+                    <div class="list-group-item mb-3 shadow-lg rounded-3 border-0 bg-light">
+                        <h5 class="mb-1 font-weight-bold">{{ product.title }}</h5>
+                        <p class="mb-1 text-muted">{{ product.desc|truncatewords:30 }}</p> <!-- تغییر به `product.desc` -->
+                        <small class="text-muted">تاریخ ایجاد: {{ product.created_at|date:"Y/m/d H:i" }}</small>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-center text-muted">نتیجه‌ای یافت نشد.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-md-8 mx-auto">
+            <h3 class="text-center text-info font-weight-bold mb-4">تاریخچه جستجوها</h3>
+            {% if queries %}
+                <div class="list-group">
+                    {% for query in queries %}
+                        <div class="list-group-item mb-3 shadow-lg rounded-3 border-0 bg-light">
+                            <p class="mb-1 font-weight-bold">{{ query.query }}</p>
+                            <small class="text-muted">تاریخ جستجو: {{ query.created_at|date:"Y/m/d H:i" }}</small>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-center text-muted">هیچ تاریخچه جستجویی وجود ندارد.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-12 d-flex justify-content-center">
+            <a href="{% url 'index' %}" class="btn btn-info btn-lg rounded-pill mt-4 px-4 py-2">بازگشت به صفحه اصلی</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

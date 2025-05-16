@@ -1,0 +1,119 @@
+{% extends "products/index.html" %}
+{% block body %}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .custom-card {
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+    .custom-card:hover {
+        transform: translateY(-5px);
+    }
+    .custom-btn {
+        background: linear-gradient(45deg, #007bff, #00c6ff);
+        border: none;
+        transition: 0.3s;
+    }
+    .custom-btn:hover {
+        background: linear-gradient(45deg, #0056b3, #0096c7);
+    }
+    .form-control {
+        border-radius: 8px;
+    }
+    .breadcrumb {
+        background-color: transparent;
+    }
+    .accordion .card-header {
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="container px-1">
+    <ul class="breadcrumb mt-4">
+        <li class="breadcrumb-item"><a href="#" class="font-12 vazir">صفحه اصلی</a></li>
+        <li class="breadcrumb-item"><a href="#" class="pr-2 font-12 vazir">تدریس در ایزی لرن</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row px-1">
+        <div class="col-md-6 bg-white my-3 p-4 custom-card">
+            <h6 class="mt-3 font-14">ثبت موضوع آموزشی</h6>
+            <p class="vazir font-13 mt-3">لطفا ابتدا بخش‌های قوانین تولید و استانداردهای ایزی لرن را مطالعه کنید.</p>
+            <hr>
+            <form>
+                <div class="form-group">
+                    <label for="name">نام کامل :</label>
+                    <input id="name" class="form-control" type="text" placeholder="نام و نام خانوادگی خود را وارد کنید">
+                </div>
+                <div class="form-group">
+                    <label for="number">تلفن تماس :</label>
+                    <input id="number" class="form-control" type="number" placeholder="شماره خود را وارد کنید">
+                </div>
+                <div class="form-group">
+                    <label for="email">ایمیل :</label>
+                    <input id="email" class="form-control" type="email" placeholder="ایمیل خود را وارد کنید">
+                </div>
+                <div class="form-group">
+                    <label for="course-title">عنوان :</label>
+                    <input id="course-title" class="form-control" type="text" placeholder="عنوان آموزش خود را وارد کنید">
+                </div>
+                <div class="form-group">
+                    <label for="category">دسته بندی :</label>
+                    <select class="form-control font-12" id="category">
+                        <option>طراحی سایت</option>
+                        <option>گرافیک</option>
+                        <option>برنامه نویسی اندروید</option>
+                        <option>برنامه نویسی وب</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="url">لینک نمونه (اختیاری) : </label>
+                    <input id="url" class="form-control" type="url" placeholder="لینک نمونه خود را وارد کنید">
+                </div>
+                <p class="vazir font-12 text-info">لینک نمونه می‌تواند ویدئوی معرفی دوره شما یا هر ویدئوی آموزشی دیگری باشد.</p>
+                <div class="form-group">
+                    <label for="comment">توضیحات</label>
+                    <textarea class="form-control" rows="5" id="comment" placeholder="توضیحاتی مختصر درباره مطالبی که در این آموزش ارائه خواهید کرد"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block rounded-pill custom-btn font-13 my-4">ثبت موضوع آموزشی</button>
+            </form>
+        </div>
+        <div class="col-md-6 bg-white my-3 p-4 custom-card">
+            <h6 class="mt-3 mb-4 font-14 text-primary">استانداردهای ایزی لرن برای تولید ویدئوهای آموزشی</h6>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link font-14 text-muted" data-toggle="collapse" href="#collapseOne">
+                            <i class="fa fa-plus align-middle ml-2"></i>کیفیت تصویر
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                        <div class="card-body">
+                            <p class="vazir font-13 text-justify">کیفیت تصویر باید حداقل Full HD باشد و وضوح مناسبی داشته باشد.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link font-14 text-muted" data-toggle="collapse" href="#collapseTwo">
+                            <i class="fa fa-plus align-middle ml-2"></i>کیفیت صدا
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            <p class="vazir font-13 text-justify">صدای ویدئو باید بدون نویز باشد و کیفیت ضبط بالا داشته باشد.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

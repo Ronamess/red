@@ -1,0 +1,523 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه آنلاین محصولات</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/carousel/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap-rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customcss/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        .custom-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+        }
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .card-img-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .btn-outline-primary {
+            transition: all 0.3s ease;
+        }
+        .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .search-box {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+        }
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .footer-links a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #007bff;
+        }
+        .social-media a {
+            transition: transform 0.3s ease;
+        }
+        .social-media a:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+
+{% block header %}
+
+<!----- Start header ----->
+<header class="bg-white shadow-sm">
+    <div class="container">
+        <div class="row pb-3">
+            <div class="d-none d-lg-block col-lg-2">
+                <img src="{% static 'images/logo.jpg' %}" alt="EasyLearn" title="EasyLearn" class="img-fluid">
+            </div>
+            <div class="d-none d-lg-flex col-lg-6 align-items-center search-box">
+                <form action="" method="GET" class="w-100">
+                    <div class="input-group">
+                        <input type="search" name="q" class="form-control" placeholder="عنوان مورد نظر خود را جستجو کنید ..." aria-label="Search">
+                        <div class="input-group-append">
+                            <a href="{% url 'search' %}" class="btn btn-info font-13">جستجو</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="d-none d-lg-flex col-lg-4 align-items-center justify-content-end">
+                <a href="{% url 'sabadkharid' %}" class="cart mt-2 ml-2 dropdown"><i class="fa fa-shopping-basket"></i></a>
+                {% if user.is_authenticated %}
+                    <a href="panel-user" class="btn btn-info font-13 vazir-med-fa mx-2">{{ user.first_name }} {{ user.last_name }}   عزیز خوش آمدید</a>
+                    <a href="{% url 'logout' %}" class="btn btn-danger font-13 vazir-med-fa mx-2">
+                        <i class="fa fa-sign-out pl-1"></i> خروج</a>
+                {% else %}
+                    <a href="{% url 'signup_account_module' %}" class="btn btn-outline-info font-13 vazir-med-fa">
+                        <i class="fa fa-user-plus pl-1"></i> ثبت نام</a>
+                    <a href="{% url 'login' %}" class="btn btn-info font-13 vazir-med-fa mx-2">ورود</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+<!----- End header ----->
+
+
+<!----- Start menu ----->
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm sticky-top">
+    <div class="container">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#mainmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainmenu">
+            <ul class="navbar-nav pr-0 custom-navbar font-14 text-center">
+                <li class="nav-item ml-3 custom-nav-item"><a href="{% url 'index' %}" class="nav-link">صفحه اصلی</a></li>
+                <li class="nav-item ml-3 dropdown custom-nav-item"><a href="{% url 'category' %}" class="nav-link  dropdown-toggle" data-toggle="dropdown">دسته بندی </a>
+                    <div class="dropdown-menu custom-dropdown-menu dropdown-menu-right font-13 text-right">
+                        <a href="{% url 'calculator' %}" class="dropdown-item border-bottom py-2"> ماشین حساب </a>
+                    </div>
+{#                        <a href="{% url 'course' %}" class="dropdown-item border-bottom py-2">دوره آموزش برنامه نویسی اندروید</a>#}
+{#                        <a href="{% url 'course' %}" class="dropdown-item border-bottom py-2">دوره  جامع آموزش فتوشاپ</a>#}
+{#                        <a href="{% url 'course' %}" class="dropdown-item border-bottom py-2">دوره آموزش پایتون</a>#}
+{#                        <a href="{% url 'course' %}" class="dropdown-item py-2">دوره جامع آموزش وردپرس</a>#}
+{#                    </div>#}
+                </li>
+                <li class="nav-item ml-3 dropdown custom-nav-item"><a href="#" class="nav-link  dropdown-toggle" data-toggle="dropdown">صفحات</a>
+                    <div class="dropdown-menu  custom-dropdown-menu dropdown-menu-right font-13 text-right">
+                        <a href="{% url 'teach' %}" class="dropdown-item border-bottom py-2">مدرس شوید</a>
+                        <a href="{% url 'panel_user' %}" class="dropdown-item border-bottom py-2">پنل کاربری</a>
+{#                        <a href="{% url 'search_results' %}" class="dropdown-item border-bottom py-2">جستجو</a>#}
+                        <a href="{% url 'search' %}" class="dropdown-item border-bottom py-2">جستجو</a>
+
+                        <a href="{% url 'error404' %}" class="dropdown-item py-2">Error 404</a>
+
+                    </div>
+                </li>
+                <li class="nav-item ml-3 custom-nav-item"><a href="{% url 'blog' %}" class="nav-link">بلاگ</a></li>
+                <li class="nav-item ml-3 custom-nav-item"><a href="{% url 'contact_us' %}" class="nav-link">تماس باما</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+<!----- End menu ----->
+
+<!----- Start middle box ----->
+<div class="d-none d-md-flex middle-box">
+    <div class="container">
+        <div class="row d-flex justify-content-end">
+            <div class="col-md-6 text-center">
+                <h2 class="text-center text-info my-5 pt-3">{{ data_info }}</h2>
+                <p class="text-center pt-1 mb-3">
+                    {{ data_info.desc }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!----- End middle box ----->
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-between align-items-center mb-4">
+            <h6 class="title font-weight-bold text-primary pb-2">دوره های جدید </h6>
+        </div>
+    </div>
+</div>
+
+<!-- Start course boxes -->
+<div class="container my-3">
+    <div class="row">
+        {% for foo in data_product %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card custom-card mb-3">
+                <div class="sub-layer">
+                    <img src="{{ foo.image.url }}" alt="{{ foo.title }}" class="img-fluid card-img-top">
+                    <div class="over-layer">
+                        <a href="{% url 'test' slug=foo.slug %}" class="btn btn-primary"> مشاهده و خرید </a>
+                        <span class="badge badge-secondary badge-pill"> 100 <i class="fa fa-shopping-basket pr-1"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'course' %}" class="card-link">{{ foo.title }}</a>
+                    <p class="text-justify card-text vazir font-14 mt-3">
+                        {{ foo.desc }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <span class="badge badge-primary badge-pill pt-1">{{ foo.off }}%</span>
+                    <div class="float-left">
+                        <del class="text-muted font-13">{{ foo.price }} تومان</del>
+                        <del class="text-muted font-13">{{ foo.price }} تومان</del>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- End course boxes -->
+
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-between align-items-center mb-4">
+            <h6 class="title font-weight-bold text-primary pb-2"> دوره های آموزشی </h6>
+        </div>
+    </div>
+</div>
+
+<!-- Start events -->
+<div class="container my-5">
+    <div class="row">
+        <div class="d-none d-lg-block col-lg-6">
+            <img src="{% static 'images/1.jfif' %}" alt="event" class="img-fluid event-img rounded-3 shadow-lg">
+        </div>
+        <div class="col-lg-6">
+            {% for foo in data_courses %}
+            <div class="events mb-5">
+                <a href="{% url 'course_detail' foo.id %}" class="d-block mb-2 font-weight-bold text-primary">
+                    {{ foo.title }}
+                </a>
+                <p class="font-14 text-muted text-justify mb-3">{{ foo.desc }}</p>
+                <span class="text-muted d-block mb-3">تاریخ برگزاری: {{ foo.start_date}}</span>
+                <a href="{% url 'course_detail' foo.id %}" class="btn btn-outline-primary btn-sm rounded-pill px-4 py-2 float-left"> ادامه مطلب  </a>
+                <br>
+                <hr class="mt-4">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{#<div class="container">#}
+{#    <div class="row">#}
+{#        <div class="col-sm-12 d-flex justify-content-between align-items-center mb-4">#}
+{#            <h6 class="title font-weight-bold text-primary pb-2"> دستاورد </h6>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{##}
+{##}
+{#<!----- Start site info ----->#}
+{#<div class="container d-none d-lg-block">#}
+{#    <div class="row mt-4 mb-5">#}
+{#        {% for foo in data_Achievement %}#}
+{#        <div class="col-md-3 mb-4">#}
+{#            <div class="card teacher-card shadow-sm border-0 rounded-3">#}
+{#                <img src="{{ foo.image.url }}" alt="teacher" class="img-fluid card-img-top rounded-3">#}
+{#                <div class="card-body text-center p-3">#}
+{#                    <h5 class="card-title font-weight-bold text-dark mb-2">{{ foo.name }}</h5>#}
+{#                    <p class="card-text font-14 text-muted">{{ foo.desc }}</p>#}
+{#                    <div class="d-flex justify-content-between align-items-center">#}
+{#                        <span class="bg-light p-2 text-muted font-12 rounded-pill">#}
+{#                            <i class="fa fa-pen ml-1"></i>{{ foo.author }}#}
+{#                        </span>#}
+{#                        <span class="bg-light p-2 text-muted font-12 rounded-pill">#}
+{#                            <i class="fa fa-eye mx-1"></i> {{ foo.views }}#}
+{#                        </span>#}
+{#                    </div>#}
+{#                    <a href="{% url 'article' %}" class="btn btn-primary float-left mt-3 px-4 py-2 rounded-pill">بیشتر بخوانید</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#</div>#}
+<!----- End site info ----->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-between align-items-center mb-4">
+            <h6 class="title font-weight-bold text-primary pb-2">  بهترین شرکت‌ها</h6>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Start best company -->
+<div class="container d-none d-lg-block">
+    <div class="row mt-4 mb-5">
+        {% for foo in data_company %}
+        <div class="col-md-3 mb-4">
+            <div class="card teacher-card shadow-sm border-0 rounded-3">
+                <img src="{{ foo.image.url }}" alt="teacher" class="img-fluid card-img-top rounded-3">
+                <div class="card-body text-center p-3">
+                    <h5 class="card-title font-weight-bold text-dark mb-2">{{ foo.name }}</h5>
+                    <p class="card-text font-14 text-muted">{{ foo.desc }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- End best company -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 d-flex justify-content-between align-items-center mb-4">
+            <h6 class="title font-weight-bold text-primary pb-2">تازه ترین مقالات آموزشی</h6>
+        </div>
+    </div>
+</div>
+
+
+
+<!----- Start article boxes ----->
+<div class="container">
+    <div class="row mt-4 mb-5">
+        {% for foo in data_Article %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card custom-card mb-4 shadow-lg border-0 rounded-3">
+                <img src="{{ foo.image.url }}" alt="article" class="img-fluid card-img-top rounded-3">
+                <div class="card-body p-4">
+                    <h5 class="card-title text-center mb-3">
+                        <a href="{% url 'article' %}" class="card-link font-weight-bold text-dark">{{ foo.title }}</a>
+                    </h5>
+                    <p class="card-text font-14 text-muted mb-3">{{ foo.desc }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="bg-light p-2 text-muted font-12 rounded-pill">
+                            <i class="fa fa-pen ml-1"></i>{{ foo.author }}
+                        </span>
+                        <span class="bg-light p-2 text-muted font-12 rounded-pill">
+                            <i class="fa fa-eye mx-1"></i> {{ foo.views }}
+                        </span>
+                    </div>
+                    <a href="{% url 'blog_list' %}" class="btn btn-primary float-left mt-3 px-4 py-2 rounded-pill">بیشتر بخوانید</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!----- End article boxes ----->
+{% endblock %}
+
+<!----- Start footer ----->
+{% block footer %}
+<footer class="bg-light py-4">
+    <div class="container">
+        <div class="row align-items-start">
+
+            <!-- Logo & Contact -->
+            <div class="col-md-4 text-center text-md-start">
+                <img src="{% static 'images/logo4.jpg' %}" alt="لوگو" class="img-fluid mb-3 rounded shadow-sm">
+                <p class="text-justify font-14 vazir text-muted">
+                    {{ data_info }}
+                </p>
+                <ul class="list-unstyled">
+                    <li class="font-14"><i class="fas fa-map-marker-alt text-primary ms-2"></i> {{ data_info.address }}</li>
+                    <li class="font-14"><i class="fas fa-envelope text-primary ms-2"></i> {{ data_info.email }}</li>
+                    <li class="font-14"><i class="fa fa-phone text-primary ms-2"></i> {{ data_info.telephone }}</li>
+                </ul>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-2 text-center footer-links">
+                <h6 class="mb-3 font-weight-bold text-primary"> دسترسی سریع</h6>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'signup_account_module' %}" class="footer-link">ثبت نام</a></li>
+                    <li><a href="{% url 'login' %}" class="footer-link">ورود</a></li>
+                    <li><a href="{% url 'blog' %}" class="footer-link">بلاگ</a></li>
+                    <li><a href="{% url 'contact_us' %}" class="footer-link"> تماس با ما</a></li>
+                </ul>
+            </div>
+
+            <!-- Useful Links -->
+            <div class="col-md-2 text-center footer-links">
+                <h6 class="mb-3 font-weight-bold text-primary"> لینک‌های مفید</h6>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'article' %}" class="footer-link">مقاله</a></li>
+                    <li><a href="{% url 'category' %}" class="footer-link">دسته بندی</a></li>
+                    <li><a href="{% url 'calculator' %}" class="footer-link"> ماشین حساب </a></li>
+                    <li><a href="{% url 'dashboardindex' %}" class="footer-link">داشبورد</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="col-md-4 text-center">
+                <h6 class="mb-3 font-weight-bold text-primary"> عضویت در خبرنامه</h6>
+                <p class="text-muted mb-3">با عضویت از تخفیف‌ها و اخبار جدید مطلع شوید!</p>
+                <form action="" method="post" class="newsletter-form">
+                    {% csrf_token %}
+                    <div class="input-group shadow-sm">
+                        <input type="email" name="email" class="form-control rounded-start newsletter-input" placeholder="ایمیل خود را وارد کنید..." required>
+                        <button type="submit" class="btn btn-primary rounded-end newsletter-btn"> تایید ✅</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Social Media -->
+
+
+
+        <style>
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #f1f1f1;
+            color: #333;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* رنگ‌های مخصوص هر شبکه اجتماعی */
+        .social-icon.instagram:hover { background-color: #E4405F; color: white; }
+        .social-icon.twitter:hover { background-color: #1DA1F2; color: white; }
+        .social-icon.youtube:hover { background-color: #FF0000; color: white; }
+        .social-icon.telegram:hover { background-color: #0088CC; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="social-icons">
+        <a href="https://www.instagram.com/" target="_blank" class="social-icon instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://twitter.com/" target="_blank" class="social-icon twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.youtube.com/" target="_blank" class="social-icon youtube">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://t.me/" target="_blank" class="social-icon telegram">
+            <i class="fab fa-telegram"></i>
+        </a>
+    </div>
+
+        <!-- Back to Top Button -->
+
+
+        <!-- Copyright -->
+        <div class="text-center mt-3">
+            <hr>
+            <p class="text-muted font-14">© کلیه حقوق این سایت متعلق به جنگو مهرماه 1403</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer-links a {
+        text-decoration: none;
+        color: #555;
+        transition: all 0.3s;
+        font-size: 14px;
+    }
+    .footer-links a:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
+    .social-icon {
+        font-size: 22px;
+        margin: 0 10px;
+        color: #555;
+        transition: all 0.3s;
+    }
+    .social-icon:hover {
+        color: #007bff;
+        transform: scale(1.1);
+    }
+    .top-button {
+        font-size: 26px;
+        color: #007bff;
+        transition: all 0.3s;
+    }
+    .top-button:hover {
+        color: #0056b3;
+        transform: scale(1.1);
+    }
+    .newsletter-form {
+        max-width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        background: #f8f9fa;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .newsletter-input {
+        border: none;
+        padding: 10px;
+        font-size: 14px;
+        transition: all 0.3s;
+    }
+    .newsletter-input:focus {
+        outline: none;
+        box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.5);
+    }
+    .newsletter-btn {
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+    .newsletter-btn:hover {
+        background: #0056b3;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
+<!----- End footer ----->
+
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/myscript.js' %}"></script>
+</body>
+</html>

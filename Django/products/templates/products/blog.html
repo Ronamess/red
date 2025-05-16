@@ -1,0 +1,71 @@
+{% extends "products/index.html" %}
+{% block body %}
+{% load static %}
+
+<!-- Page Title -->
+<div class="page-title d-flex flex-column justify-content-center align-items-center mb-4">
+    <h4 class="text-white mb-5 font-weight-bold">بلاگ آموزشی ایزی لرن</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <form action="" method="GET">
+                    <div class="input-group">
+                        <input type="search" name="q" class="form-control" placeholder="عنوان مورد نظر خود را جستجو کنید ..." aria-label="Search">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-info font-13">جستجو</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Article Boxes -->
+<div class="container">
+    <div class="row mt-3 mb-5">
+        {% for article in page_obj %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card custom-card mb-3 shadow-sm border-light">
+                <img src="{{ article.image.url }}" alt="article" class="img-fluid card-img-top">
+                <div class="card-body">
+                    <div class="text-center mb-3 mt-2">
+                        <a href="#" class="card-link font-14 text-dark font-weight-bold">{{ article.title }}</a>
+                    </div>
+                    <p class="card-text font-13 vazir text-muted">{{ article.content|truncatewords:20 }}</p>
+                    <div class="d-flex justify-content-between">
+                        <span class="bg-light p-2 text-muted font-12">
+                            <i class="fa fa-pen ml-1"></i> {{ article.author }}
+                            <i class="fa fa-eye mx-1"></i> {{ article.views }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Pagination -->
+<ul class="pagination justify-content-center mb-5">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lsaquo;</a>
+    </li>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+    <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+    </li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&rsaquo;</a>
+    </li>
+    {% endif %}
+</ul>
+
+{% endblock %}

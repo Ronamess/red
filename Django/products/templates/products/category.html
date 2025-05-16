@@ -1,0 +1,107 @@
+{% extends "products/index.html" %}
+{% block body %}
+
+<div class="container pr-1">
+    <ul class="breadcrumb bg-white mt-4 rounded p-2 shadow-sm">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}" class="font-12 vazir text-primary">صفحه اصلی</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'category' %}" class="pr-2 font-12 vazir text-primary">دوره‌های آموزشی برنامه‌نویسی وب</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row my-4">
+        <!-- Sidebar Filters -->
+        <div class="col-md-3">
+            <div class="bg-white shadow-sm mb-3 rounded p-3">
+                <h6 class="font-14 text-dark mb-3">🔍 فیلتر دوره‌ها</h6>
+                <p class="font-13 mb-2">نوع دوره</p>
+                <hr>
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" value=""> <label class="form-check-label">رایگان</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" value=""> <label class="form-check-label">فقط نقدی</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" value=""> <label class="form-check-label">نقدی و اعضای ویژه</label>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-sm mb-3 rounded p-3">
+                <p class="font-13 mb-2">مرتب‌سازی براساس</p>
+                <hr>
+                <div class="form-check mb-2">
+                    <input type="radio" class="form-check-input" name="sort"> <label class="form-check-label">جدیدترین</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input type="radio" class="form-check-input" name="sort"> <label class="form-check-label">قدیمی‌ترین</label>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-sm rounded p-3">
+                <p class="font-13 mb-2">سرفصل‌ها</p>
+                <hr>
+                {% for foo in data_product %}
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" value=""> <label class="form-check-label">{{ foo.name }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+            <div class="row">
+                {% for foo in data_product %}
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative overflow-hidden">
+                            {% if foo.image %}
+                                <img src="{{ foo.image.url }}" alt="{{ foo.title }}" class="img-fluid card-img-top rounded">
+                            {% else %}
+                                <img src="path-to-default-image.jpg" alt="No Image Available" class="img-fluid card-img-top rounded">
+                            {% endif %}
+                            <div class="position-absolute top-50 start-50 translate-middle opacity-0 hover-effect">
+                                <a href="{% url 'test' slug=foo.slug %}" class="btn btn-primary btn-lg">مشاهده و خرید</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a href="{% url 'course' %}" class="card-link text-dark font-weight-bold">{{ foo.name }}</a>
+                            <p class="text-muted font-14 mt-3">{{ foo.desc }}</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <span class="badge bg-primary p-2">{{ foo.off }}%</span>
+                            <div class="text-muted">
+                                <del class="font-13">{{ foo.price }} تومان</del>
+                                <small class="text-success">{{ foo.price|floatformat:0|add:"-"|add:foo.off }} تومان</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-5">
+        <li class="page-item"><a href="#" class="page-link">&lsaquo;</a></li>
+        <li class="page-item"><a href="#" class="page-link">1</a></li>
+        <li class="page-item active"><a href="#" class="page-link">2</a></li>
+        <li class="page-item"><a href="#" class="page-link">3</a></li>
+        <li class="page-item"><a href="#" class="page-link">4</a></li>
+        <li class="page-item"><a href="#" class="page-link">&rsaquo;</a></li>
+    </ul>
+</div>
+
+<style>
+    .hover-effect {
+        transition: all 0.3s ease-in-out;
+    }
+    .position-relative:hover .hover-effect {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+</style>
+
+{% endblock %}
